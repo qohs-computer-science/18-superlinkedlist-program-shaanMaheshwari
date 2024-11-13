@@ -1,9 +1,18 @@
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Iterator;
 
 public class SuperLinkedList extends LinkedList<String> {
+    ListIterator<String> temp =  this.listIterator();
     public boolean removeVowels() {
-        return false;
+        boolean removed = false;
+        while(temp.hasNext() == true){
+            if(temp.next().indexOf("AEIOUaeiou") != -1){
+                temp.remove();
+                removed = true;
+            }
+        }
+        return removed;
     }
 
     public boolean removeConsonants() {
@@ -25,7 +34,12 @@ public class SuperLinkedList extends LinkedList<String> {
     }
 
     public String toString() {
-
-        return "";
+        temp = this.listIterator();
+        String output = "";
+        output += temp.next();
+        while(temp.hasNext() == true){
+            output += ", " + temp.next();
+        }
+        return output;
     }
 } // end SuperLinkedList
