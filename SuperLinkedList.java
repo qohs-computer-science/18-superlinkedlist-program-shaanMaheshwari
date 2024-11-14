@@ -3,8 +3,6 @@ import java.util.ListIterator;
 import java.util.Iterator;
 
 public class SuperLinkedList extends LinkedList<String> {
- 
-    
     public boolean removeVowels() {
         ListIterator<String> temp =  this.listIterator(); 
         boolean removed = false;
@@ -30,12 +28,40 @@ public class SuperLinkedList extends LinkedList<String> {
     }
 
     public LinkedList<String> removeDuplicates() {
-        return null;
+        LinkedList<String> removedList = new LinkedList<String>();
+        ListIterator<String> temp =  this.listIterator();
+
+        for(int i = 0; i < this.size(); i++){
+            String dupe = this.get(i);
+            temp = this.listIterator();
+            boolean found = false;
+            while(temp.hasNext() == true){
+                if(dupe.equals(temp.next())){
+                    if(!found){
+                        found = true;
+                    } else {
+                        removedList.add(temp.previous());
+                        temp.remove();
+                    }
+                }
+            }
+        }
+        return removedList;
     }
 
     public LinkedList<String> concatenateStrings() {
+        LinkedList<String> combinedList = new LinkedList<String>();
+        ListIterator<String> temp =  this.listIterator();
 
-        return null;
+        String start = temp.next();
+        combinedList.add(start);
+
+        while(temp.hasNext() == true){
+            start += temp.next();
+            combinedList.add(start);
+        }
+
+        return combinedList;
     }
 
     public LinkedList<String> mix(LinkedList<String> list2) {
